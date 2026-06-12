@@ -347,7 +347,7 @@ nav {
 .home-cat-card:hover { border-color: rgba(0,255,136,0.3); transform: translateY(-3px); }
 .home-cat-card:hover::before { opacity: 1; }
 .hcc-icon { font-size: 20px; margin-bottom: 8px; }
-.hcc-name { font-family: 'Syne', sans-serif; font-weight: 500; font-size: 8px; margin-bottom: 2px; }
+.hcc-name { font-family: 'Syne', sans-serif; font-weight: 500; font-size: 12px; margin-bottom: 4px; }
 .hcc-count { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); }
 
 /* home featured products strip */
@@ -1048,14 +1048,14 @@ img, svg { max-width: 100%; }
       <div class="sidebar-section">
         <div class="sidebar-title">Categories</div>
         <div class="cat-list" id="catList">
-          <div class="cat-item active" data-cat="all"><span class="cat-icon">🌐</span> All Products<span class="cat-count">48</span></div>
-          <div class="cat-item" data-cat="premium"><span class="cat-icon">⭐</span> Premium Plans<span class="cat-count">4</span></div>
-          <div class="cat-item" data-cat="plugins"><span class="cat-icon">🔌</span> Plugins<span class="cat-count">18</span></div>
-          <div class="cat-item" data-cat="ai"><span class="cat-icon">🤖</span> AI Tools<span class="cat-count">7</span></div>
-          <div class="cat-item" data-cat="downloader"><span class="cat-icon">📥</span> Downloader<span class="cat-count">6</span></div>
-          <div class="cat-item" data-cat="group"><span class="cat-icon">👥</span> Group Tools<span class="cat-count">5</span></div>
-          <div class="cat-item" data-cat="games"><span class="cat-icon">🎮</span> Games & RPG<span class="cat-count">5</span></div>
-          <div class="cat-item" data-cat="economy"><span class="cat-icon">💰</span> Economy<span class="cat-count">3</span></div>
+          <div class="cat-item active" data-cat="all"><span class="cat-icon"></span> All Products<span class="cat-count">48</span></div>
+          <div class="cat-item" data-cat="premium"><span class="cat-icon"></span> Premium Plans<span class="cat-count">4</span></div>
+          <div class="cat-item" data-cat="plugins"><span class="cat-icon"></span> New Published<span class="cat-count">18</span></div>
+          <div class="cat-item" data-cat="ai"><span class="cat-icon"></span> Trending<span class="cat-count">7</span></div>
+          <div class="cat-item" data-cat="downloader"><span class="cat-icon"></span> Discount Products<span class="cat-count">6</span></div>
+          <div class="cat-item" data-cat="group"><span class="cat-icon"></span> Top Sale<span class="cat-count">5</span></div>
+          <div class="cat-item" data-cat="games"><span class="cat-icon"></span> Games<span class="cat-count">5</span></div>
+          <div class="cat-item" data-cat="economy"><span class="cat-icon"></span> Mostly Buyed<span class="cat-count">3</span></div>
         </div>
       </div>
       <div class="sidebar-section">
@@ -1163,12 +1163,12 @@ img, svg { max-width: 100%; }
             <div class="admin-field"><label>Category</label>
               <select id="apCat" onchange="updatePreview()">
                 <option value="premium">Premium Plans</option>
-                <option value="plugins">Plugins</option>
-                <option value="ai">AI Tools</option>
-                <option value="downloader">Downloader</option>
-                <option value="group">Group Tools</option>
-                <option value="games">Games & RPG</option>
-                <option value="economy">Economy</option>
+                <option value="plugins">New Published</option>
+                <option value="ai">Trending</option>
+                <option value="downloader">Discount Products</option>
+                <option value="group">Top Sale</option>
+                <option value="games">Games</option>
+                <option value="economy">Mostly Buyed</option>
               </select>
             </div>
             <div class="admin-field"><label>Stock Status</label>
