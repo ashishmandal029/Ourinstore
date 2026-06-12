@@ -431,7 +431,7 @@ input[type=range] { width: 100%; accent-color: var(--green); background: transpa
 
 /* product grid */
 .product-grid {
-  display: grid; grid-template-columns: repeat(3,1fr);
+  display: grid; grid-template-columns: repeat(4,1fr);
   gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 28px;
 }
 .product-grid.list-view { grid-template-columns: 1fr; }
@@ -450,19 +450,19 @@ input[type=range] { width: 100%; accent-color: var(--green); background: transpa
 .pbadge.ltd { background: var(--purple); color: #fff; }
 .prod-wishlist { position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; background: rgba(3,5,8,0.7); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 14px; z-index: 3; cursor: none; transition: all 0.2s; }
 .prod-wishlist:hover { border-color: var(--red); color: var(--red); }
-.prod-img { height: 140px; position: relative; overflow: hidden; background: linear-gradient(135deg, #060c12, #0a1628); border-bottom: 1px solid var(--border); }
-.prod-img-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 52px; transition: transform 0.4s; }
+.prod-img { height: 110px; position: relative; overflow: hidden; background: linear-gradient(135deg, #060c12, #0a1628); border-bottom: 1px solid var(--border); }
+.prod-img-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 38px; transition: transform 0.4s; }
 .prod-scanlines { position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,255,136,0.008) 3px, rgba(0,255,136,0.008) 4px); pointer-events: none; }
-.prod-body { padding: 14px 12px; display: flex; flex-direction: column; flex: 1; }
+.prod-body { padding: 10px 10px; display: flex; flex-direction: column; flex: 1; }
 .prod-cat { font-family: 'Space Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
-.prod-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; line-height: 1.3; margin-bottom: 6px; }
-.prod-desc { font-size: 11px; color: var(--muted); line-height: 1.5; margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; flex: 1; }
-.prod-rating { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
-.prod-stars { color: #ffd700; font-size: 11px; letter-spacing: 1px; }
-.prod-rating-num { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--green); }
-.prod-reviews { font-size: 11px; color: var(--muted); }
-.prod-price-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
-.prod-price { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; color: var(--green); }
+.prod-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 12px; line-height: 1.3; margin-bottom: 4px; }
+.prod-desc { font-size: 10px; color: var(--muted); line-height: 1.4; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; flex: 1; }
+.prod-rating { display: flex; align-items: center; gap: 5px; margin-bottom: 7px; }
+.prod-stars { color: #ffd700; font-size: 10px; letter-spacing: 1px; }
+.prod-rating-num { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--green); }
+.prod-reviews { font-size: 10px; color: var(--muted); }
+.prod-price-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 9px; }
+.prod-price { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 16px; color: var(--green); }
 .prod-price-old { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); text-decoration: line-through; }
 .prod-discount { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--red); background: rgba(255,34,85,0.1); border: 1px solid rgba(255,34,85,0.2); padding: 2px 6px; }
 .prod-actions { display: flex; gap: 8px; }
@@ -836,7 +836,6 @@ img, svg { max-width: 100%; }
   .cat-list { flex-direction: row; flex-wrap: wrap; gap: 6px; }
   .cat-item { padding: 6px 10px; font-size: 11px; flex: 0 0 auto; }
   .product-grid { grid-template-columns: repeat(2,1fr); }
-  .rv-strip { grid-template-columns: repeat(2,1fr); }
   .footer-top { grid-template-columns: 1fr 1fr; gap: 20px; padding: 36px 14px 28px; }
   .footer-bottom { flex-direction: column; gap: 10px; text-align: center; padding: 16px 14px; }
   .cart-panel { width: 100%; max-width: 100%; }
@@ -1296,7 +1295,7 @@ function openProductDetail(id) {
 
   const discount = p.oldPrice ? Math.round((1 - p.price / p.oldPrice) * 100) : null
   const savings = p.oldPrice ? p.oldPrice - p.price : 0
-  const allImages = p.img ? [p.img] : []
+  const allImages = p.images && p.images.length > 0 ? p.images : (p.img ? [p.img] : [])
 
   const specRows = (p.specs || []).map(([k,v]) => `
     <div class="pdp-spec-row"><span class="pdp-spec-key">${k}</span><span class="pdp-spec-val">${v}</span></div>
@@ -1304,8 +1303,8 @@ function openProductDetail(id) {
 
   const highlights = (p.highlights || []).map(h => `<div class="pdp-highlight">${h}</div>`).join('')
 
-  const mainImgHtml = p.img 
-    ? `<img src="${p.img}" id="pdpMainImgEl" style="width:100%;height:100%;object-fit:contain">`
+  const mainImgHtml = allImages.length > 0
+    ? `<img src="${allImages[0]}" id="pdpMainImgEl" style="width:100%;height:100%;object-fit:contain">`
     : `<span style="font-size:80px" id="pdpMainImgEl">${p.icon}</span>`
 
   const thumbs = allImages.length > 0 
@@ -1327,7 +1326,7 @@ function openProductDetail(id) {
     </div>
     <div class="pdp-layout">
       <div class="pdp-gallery-col">
-        <div class="pdp-main-img-wrap">
+        <div class="pdp-main-img-wrap" id="pdpMainImgWrap">
           ${mainImgHtml}
           <div class="pdp-scanlines"></div>
         </div>
@@ -1420,8 +1419,12 @@ function openProductDetail(id) {
 function setPdpImg(src, el) {
   document.querySelectorAll('.pdp-thumb').forEach(t => t.classList.remove('active'))
   el.classList.add('active')
-  const mainEl = document.getElementById('pdpMainImgEl')
-  if (mainEl) { mainEl.src = src }
+  const wrap = document.getElementById('pdpMainImgWrap')
+  if (wrap) {
+    const scan = wrap.querySelector('.pdp-scanlines')
+    wrap.innerHTML = `<img src="${src}" id="pdpMainImgEl" style="width:100%;height:100%;object-fit:contain">`
+    if (scan) wrap.appendChild(scan)
+  }
 }
 
 function catName(cat) {
@@ -1826,6 +1829,7 @@ function saveProduct() {
   const newProduct = {
     id: 1000 + list.length, name: d.name, cat: d.cat,
     icon: d.images[0] ? '' : '📦', img: d.images[0] || null,
+    images: d.images,
     price: d.price, oldPrice: d.oldPrice,
     discount: d.oldPrice ? Math.round((1-d.price/d.oldPrice)*100) : null,
     rating: d.rating || 4.5, reviews: d.reviews || 0,
